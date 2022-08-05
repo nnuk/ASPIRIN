@@ -9,11 +9,11 @@ This file contains the step by step process from setting up the software to the 
 4) Extracting molecular formula from molfile
 
 
-# (1) Prerequisite:
+## (1) Prerequisite:
 Before jumping into the problem itself, first, we must understand what softwares we want to work on so that it helps us in solving the problem quickly.
 To solve this problem I worked with the following softwares.
 
-(a) Microsoft Visual Studio 2017 (VS2017):
+###### (a) Microsoft Visual Studio 2017 (VS2017):
 I worked with the community free version of VS2017. It has a very nice extension for github where you can easily make changes to your exsiting code and push the changes on Github.
 The Github extension comes with all the features like push, pull, commit, add files etc.. It tells you which brach you are working on and so on with other useful information.
 
@@ -24,7 +24,7 @@ You can also make a project folder on your computer a repo.
 
 The link to VS2017 is https://docs.microsoft.com/en-us/visualstudio/releasenotes/vs2017-relnotes. Here, you can download the latest version.
 
-(b) Microsoft Visual Studio Code (VSCode):
+###### (b) Microsoft Visual Studio Code (VSCode):
 This is also one of the best code editors as it supports multiple programming languages. You can easily install the specific programming extension which you prefer.
 I in this case chose the C/C++ extension to support my code. To install the extension just click on the extension icon on the left side of VSCode window on the bar.
 There are very easy to understand features like debugging and compiling the code.
@@ -32,7 +32,7 @@ There are very easy to understand features like debugging and compiling the code
 The download link to VSCode for latest version is https://code.visualstudio.com/.
 
 
-# (2) Installation of concerned compiler libraries:
+## (2) Installation of concerned compiler libraries:
 The most important libraries needed to run the C code in VSCode are gcc, g++ and gdb. These are basically used for compiling the code.
 To download and install these libraries, first, we must install MinGW-w64 which is a runtime enviroment created to support the GCC compiler on windows.
 The download link for MinGW-w64 is https://www.mingw-w64.org/downloads/. In downloads pick the MSYS2 package and click on Installation : GitHub.
