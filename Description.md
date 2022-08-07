@@ -5,8 +5,8 @@ This file contains the step by step process from setting up the software to the 
 # Contents
 1) Prerequisite
 2) Installation of concerned compiler libraries
-3) Reading from molfile
-4) Extracting molecular formula from molfile
+3) Reading from "MolFile
+4) Extracting molecular formula from MolFile
 
 
 ## (1) Prerequisite:
@@ -46,3 +46,19 @@ For this, look into the folder you have installed MSYS2 (it will have name "msys
 Now in the windows search tab write "Edit the enviroment variable", click on it. New window of "system properties" will pop up. At the bottom click on Enviroment Variables.
 A new window pops up, look for "path" variable in System Variables and click once on it. Then click on edit.
 A new "Edit Enviroment Variables" window pops up, click on add button on the top right and paste the path that you copied earlier. At the end click OK on all the open windows and now we are good to go with our C code in VSCode atlast.
+
+
+## (3) Reading from MolFile:
+While working on a problem my first approach is to look for information. The first bit of information lies in the input itself if we try to look deep enough.
+For this problem my input is a MolFile as described previously above. So initially, I tried to read the data from the Molfile named "Aspirin.mol". The whole process completes with the help of following functions described below.
+Looking into the data of input file helps to formulate the next necessary steps to be taken.
+
+###### After including the required libraries and creating main(), as I am dealing with a file as an input, I created a pointer for type File.
+###### with this my program and the file can communicate with each other.
+
+###### I used a char variable array of buffer size 100, which is why I used fgets() function ahead and not gets() function as the fgets() is more secure and limits our buffer from overflowing.
+
+###### After opening the file in read mode with the help of fopen(), first the program checks if the file is present afterwards it is read by the fgets() function.
+
+###### Finally the file is data is printed in the output wwindow for visualization and understanding so that next tasks can be performed correctly. The opened file is closed with the fclose() function for better memory usage in case we have multiple files.
+
