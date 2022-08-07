@@ -7,6 +7,7 @@ This file contains the step by step process from setting up the software to the 
 2) Installation of concerned compiler libraries
 3) Reading from "MolFile
 4) Extracting molecular formula from MolFile
+5) Conclusion
 
 
 ## (1) Prerequisite:
@@ -62,3 +63,16 @@ Looking into the data of input file helps to formulate the next necessary steps 
 
 ###### Finally the file is data is printed in the output wwindow for visualization and understanding so that next tasks can be performed correctly. The opened file is closed with the fclose() function for better memory usage in case we have multiple files.
 
+
+## (4) Extracting Molecular Formula from MolFile:
+After looking into the data from the input file the first impression in terms of solving the problem is:
+
+Step 1: As I already have the information about the number of Carbon and Oxygen atoms so I have to come up with a way to calculate the number of C and O atoms and store them.
+
+Step 2: To calculate the number of Hydrogen atoms, I have to indicate in program that for example as Carbon atom has a valence of 4 so first of all group the integer values associated with Carbon.
+Which in this case are (1, 2, 3, 4, 5, 6, 7, 11, 12) after reading the input file and looking at the atom block of the mol file. Secondly, count the bond for each integer in the bound block of connection tab and store the value.
+Do the same for Oxygen. This way will get the Hydrogen atoms.
+
+## Query:
+After thinking about the steps above I come to a early conclusion that this program must be modulated with respect to the input file molecular formula.
+If we have a Nytrogen atom, with a valence of 3, we have to indicate in our program about Nytrogen first with its respective atom integers in the file and then proceed with the above steps.
