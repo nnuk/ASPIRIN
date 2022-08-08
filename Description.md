@@ -3,11 +3,11 @@ This file contains the step by step process from setting up the software to the 
 
 
 # Contents
-1) Prerequisite
-2) Installation of concerned compiler libraries
-3) Reading from "MolFile
-4) Extracting molecular formula from MolFile
-5) Conclusion
+1) **Prerequisite**
+2) **Installation of concerned compiler libraries**
+3) **Reading from "MolFile**
+4) **Extracting molecular formula from MolFile**
+5) **Conclusion**
 
 
 ## (1) Prerequisite:
@@ -43,36 +43,54 @@ Always choose the 64 bit version of MSYS2 because it only supports 64 bit machin
 Note: All the installations of GCC, GDB and G++ will take place in the MSYS2 MinGW x 64 app icon which can be found in windows search bar.
 
 The next part is very important because now we want want our compilers to be added to the enviroment path.
-For this, look into the folder you have installed MSYS2 (it will have name "msys64") open the folder then open "mingw64" folder go to bin and copy the path from the above search tab.
+For this, look into the folder you have installed MSYS2 (it will have name **"msys64"**) open the folder then open **"mingw64"** folder go to bin and copy the path from the above search tab.
 Now in the windows search tab write "Edit the enviroment variable", click on it. New window of "system properties" will pop up. At the bottom click on Enviroment Variables.
-A new window pops up, look for "path" variable in System Variables and click once on it. Then click on edit.
-A new "Edit Enviroment Variables" window pops up, click on add button on the top right and paste the path that you copied earlier. At the end click OK on all the open windows and now we are good to go with our C code in VSCode atlast.
+A new window pops up, look for **"path"** variable in System Variables and click once on it. Then click on edit.
+A new **"Edit Enviroment Variables"** window pops up, click on add button on the top right and paste the path that you copied earlier. At the end click OK on all the open windows and now we are good to go with our C code in VSCode atlast.
 
 
 ## (3) Reading from MolFile:
-While working on a problem my first approach is to look for information. The first bit of information lies in the input itself if we try to look deep enough.
-For this problem my input is a MolFile as described previously above. So initially, I tried to read the data from the Molfile named "Aspirin.mol". The whole process completes with the help of following functions described below.
+While working on a problem my first approach is to look for information. The first bit of information lies in the input itself if I try to look deep enough.
+For this problem my input is a MolFile as described previously above. So initially, I tried to read the data from the Molfile named **"Aspirin.mol"**. The whole process completes with the help of following functions described below.
 Looking into the data of input file helps to formulate the next necessary steps to be taken.
 
 ###### After including the required libraries and creating main(), as I am dealing with a file as an input, I created a pointer for type File.
 ###### with this my program and the file can communicate with each other.
 
-###### I used a char variable array of buffer size 100, which is why I used fgets() function ahead and not gets() function as the fgets() is more secure and limits our buffer from overflowing.
+###### I used a char variable array of buffer size 100, which is why I used **fgets()** function ahead and not **gets()** function as the fgets() is more secure and limits our buffer from overflowing.
 
-###### After opening the file in read mode with the help of fopen(), first the program checks if the file is present afterwards it is read by the fgets() function.
+###### After opening the file in read mode with the help of **fopen()**, first the program checks if the file is present afterwards it is read by the fgets() function.
 
-###### Finally the file is data is printed in the output wwindow for visualization and understanding so that next tasks can be performed correctly. The opened file is closed with the fclose() function for better memory usage in case we have multiple files.
+###### Finally the file is data is printed in the output window for visualization and understanding so that next tasks can be performed correctly. The opened file is closed with the **fclose()** function for better memory usage in case we have multiple files.
 
 
 ## (4) Extracting Molecular Formula from MolFile:
 After looking into the data from the input file the first impression in terms of solving the problem is:
 
-Step 1: As I already have the information about the number of Carbon and Oxygen atoms so I have to come up with a way to calculate the number of C and O atoms and store them.
+**Step 1:** As I already have the information about the number of Carbon and Oxygen atoms so I have to come up with a way to calculate the number of C and O atoms and store them.
+**Solution:** After trying different approaches the most suitable solution for me is that as I already actually know the number of Carbon and Oxygen atoms known from the Atom block.
+So, with the help of **fgetc()** function we would count the C and O atoms. A more detailed description is given below.
 
-Step 2: To calculate the number of Hydrogen atoms, I have to indicate in program that for example as Carbon atom has a valence of 4 so first of all group the integer values associated with Carbon.
+###### First I create the variable strings for the characters (In this case "**C**" & "**O**"), that are to be counted.
+
+###### Then, I created a new function ("**string_count**") in the header file **Program.h**, that counts the specified characters.
+
+###### The input to the new function is the MolFile.
+
+###### The function creates a new pointer of type File for the **fgetc()** function.
+
+###### It is important to note that fgetc() reads the input file **character by character** hence, fulfilling the purpose of counting the specified set of characters.
+
+###### The other major use of fgetc() function is that as it returns **int** so again it fulfills the need because I want the function to return the integer count of the specified characters.
+
+###### Infinite for loop is implemented so that when the pointer points to the end of the file, with the help of fgetc(), the loop is terminated by **break**.
+
+###### In the end the file is closed and the character counts are returned to the main() method where they are stored in seperate variable and printed aalong with the characters.
+
+**Step 2:** To calculate the number of Hydrogen atoms, I have to indicate in program that for example as Carbon atom has a valence of **4** so first of all group the integer values associated with Carbon.
 Which in this case are (1, 2, 3, 4, 5, 6, 7, 11, 12) after reading the input file and looking at the atom block of the mol file. Secondly, count the bond for each integer in the bound block of connection tab and store the value.
 Do the same for Oxygen. This way will get the Hydrogen atoms.
 
 ## Query:
 After thinking about the steps above I come to a early conclusion that this program must be modulated with respect to the input file molecular formula.
-If we have a Nytrogen atom, with a valence of 3, we have to indicate in our program about Nytrogen first with its respective atom integers in the file and then proceed with the above steps.
+If we have a Nytrogen atom, with a valence of **3**, we have to indicate in our program about Nytrogen first with its respective atom integers in the file and then proceed with the above steps.
