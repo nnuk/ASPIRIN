@@ -5,6 +5,8 @@
 
 # include <stdio.h>
 # include <string.h>
+# include <stdlib.h>
+# include "aspirin.h"
 
 
 int main()
@@ -45,7 +47,26 @@ int main()
 		// Closing the stream(file)
 		fclose(fPtr);
 
-		printf("\nFile is closed");
+		//printf("\nFile is closed");
+
+	// Creating variable strings that I am looking for
+	// after looking into data I will pick the desired string and remember the count
+	char carbon_character[] = " C";
+	char oxygen_character[] = " O";
+
+	// initializing the count from zero
+	int Carbon = 0;
+	int Oxygen = 0;
+
+	// storing the desired string count to a variable
+	Carbon = string_count("C:/Users/nauma/Downloads/sum_formula_challenge/Aspirin.mol", carbon_character);
+	Oxygen = string_count("C:/Users/nauma/Downloads/sum_formula_challenge/Aspirin.mol", oxygen_character);
+
+	// print chemical formula with atoms
+	printf("C%d", Carbon);
+	printf("O%d", Oxygen);
+	printf("\n");
+
 	}
 	return 0;
 }
