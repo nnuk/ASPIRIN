@@ -71,25 +71,42 @@ After looking into the data from the input file the first impression in terms of
 **Solution:** After trying different approaches the most suitable solution for me is that as I already actually know the number of Carbon and Oxygen atoms known from the Atom block.
 So, with the help of **fgetc()** function we would count the C and O atoms. A more detailed description is given below.
 
-###### First I create the variable strings for the characters (In this case "**C**" & "**O**"), that are to be counted.
+First I create the variable strings for the characters (In this case "**C**" & "**O**"), that are to be counted.
 
-###### Then, I created a new function ("**string_count**") in the header file **Program.h**, that counts the specified characters.
+Then, I created a new function ("**string_count**") in the header file **Program.h**, that counts the specified characters.
 
-###### The input to the new function is the MolFile.
+The input to the new function is the MolFile.
 
-###### The function creates a new pointer of type File for the **fgetc()** function.
+The function creates a new pointer of type File for the **fgetc()** function.
 
-###### It is important to note that fgetc() reads the input file **character by character** hence, fulfilling the purpose of counting the specified set of characters.
+It is important to note that fgetc() reads the input file **character by character** hence, fulfilling the purpose of counting the specified set of characters.
 
-###### The other major use of fgetc() function is that as it returns **int** so again it fulfills the need because I want the function to return the integer count of the specified characters.
+The other major use of fgetc() function is that as it returns **int** so again it fulfills the need because I want the function to return the integer count of the specified characters.
 
-###### Infinite for loop is implemented so that when the pointer points to the end of the file, with the help of fgetc(), the loop is terminated by **break**.
+Infinite for loop is implemented so that when the pointer points to the end of the file, with the help of fgetc(), the loop is terminated by **break**.
 
-###### In the end the file is closed and the character counts are returned to the main() method where they are stored in seperate variable and printed aalong with the characters.
+In the end the file is closed and the character counts are returned to the main() method where they are stored in seperate variable and printed aalong with the characters.
 
 **Step 2:** To calculate the number of Hydrogen atoms, I have to indicate in program that for example as Carbon atom has a valence of **4** so first of all group the integer values associated with Carbon.
-Which in this case are (1, 2, 3, 4, 5, 6, 7, 11, 12) after reading the input file and looking at the atom block of the mol file. Secondly, count the bond for each integer in the bound block of connection tab and store the value.
+Which in this case are (1, 2, 3, 4, 5, 6, 7, 11, 12) after reading the input file and looking at the atom block of the mol file. Secondly, count the bond for each integer in the bond block of connection tab and store the value.
 Do the same for Oxygen. This way will get the Hydrogen atoms.
+
+**Updated Step 2**
+To solve the problem of counting the total number of Hydrogen atoms I created a stack that stores the integers associated with Carbon and Oxygen respectively.
+
+Stack follows the LIFO (Last In First Out) policy where the integer (item) stored in the last is popped out the first.
+
+So, in my case here the last element for Carbon is **12** hence the program will look into the **1st** and **2nd** columns of the bond block and calculate the total number of bonds no. **12** atom has.
+
+As, I have already set that the carbon atom can only have maximum bonds of 4.
+
+Hence, I have added the bond type **Single** or **Double** in terms of integers from the **3rd** column and subtract it from the maximum bonds that an atom can hold. (max. for "C" is 4 and "O" is 2)
+
+In this scenario, I have got the total number of Hydrogen atoms left (if any) from all of the connections of Carbon and Oxygen atoms, checking the integers in stack one by one.
+
+After calculating each Hydrogen atom I have stored it in an array which I have summed up in the end to get the total number of Hydrogen atomns, printed along with Carbon and Oxygen as Output.
+
+**Step 3:** 
 
 ## Query:
 After thinking about the steps above I come to a early conclusion that this program must be modulated with respect to the input file molecular formula.
