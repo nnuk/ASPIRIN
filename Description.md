@@ -5,9 +5,10 @@ This file contains the step by step process from setting up the software to the 
 # Contents
 1) **Prerequisite**
 2) **Installation of concerned compiler libraries**
-3) **Reading from "MolFile**
+3) **Reading from MolFile**
 4) **Extracting molecular formula from MolFile**
 5) **Conclusion**
+6) **Future Improvements**
 
 
 ## (1) Prerequisite:
@@ -68,6 +69,7 @@ Looking into the data of input file helps to formulate the next necessary steps 
 After looking into the data from the input file the first impression in terms of solving the problem is:
 
 **Step 1:** As I already have the information about the number of Carbon and Oxygen atoms so I have to come up with a way to calculate the number of C and O atoms and store them.
+
 **Solution:** After trying different approaches the most suitable solution for me is that as I already actually know the number of Carbon and Oxygen atoms known from the Atom block.
 So, with the help of **fgetc()** function we would count the C and O atoms. A more detailed description is given below.
 
@@ -93,6 +95,7 @@ Do the same for Oxygen. This way will get the Hydrogen atoms.
 
 
 **Updated Step 2**
+
 To solve the problem of counting the total number of Hydrogen atoms I created a stack that stores the integers associated with Carbon and Oxygen respectively.
 
 Stack follows the LIFO (Last In First Out) policy where the integer (item) stored in the last is popped out the first.
@@ -109,6 +112,7 @@ After calculating each Hydrogen atom I have stored it in an array which I have s
 
 
 **New Update for Step 2:**
+
 The approach in finding the Hydrogen atoms involves multiple concepts in terms of reaching to the desired output.
 
 First of all I have introduced the **cnt** integer that skips the rows containing not useful information at the start.
@@ -131,13 +135,53 @@ The above process is repeated for every integer associated with carbon and the r
 
 The same steps are repeated for the integers associated with Oxygen (stored in the form of string in **str_o**) and later added to the integer **o_joined**.
 
-In the end, by applying the formula that is **((Total number of atoms (carbon or Oxygen)) * (maximum bond connections (carbon or oxygen))) - calculated bond connections (c_joined or o_joined)** we get the number of Hydrogen atoms.
+In the end, by applying the **Formula** that is **((Total number of atoms (carbon or Oxygen)) * (maximum bond connections (carbon or oxygen))) - calculated bond connections (c_joined or o_joined)** we get the number of Hydrogen atoms.
 
 The above formula is to be applied on both carbon and oxygen seperately and then add the results into an integer denoting total number of Hydrogen atoms.
 
 With **printf** command, the output window shows us the Chemical Formula.
 
 
-## Query:
+**Step 3:**
+
+After completing the procedure for Carbon and Oxygen it is also very important to include Nitrogen to this program so that it can pass all the tests.
+
+The steps defined in the **Update for step 2** are followed similiarly for the case of Nitrogen.
+
+The program looks for integers associated with Nitrogen (stored in the form of string in **str_n**) and adds the result of each integer into a new integer value **n_joined**.
+
+After that, the above mentioned formula is applied on the max bond connections of Nitrogen minus **n_joined**.
+
+The results of Carbon, Oxygen and Nitrogen are added to a new integer Hydrogen, showing total number of Hydrogen atoms.
+
+
+## Query 1:
 After thinking about the steps above I come to a early conclusion that this program must be modulated with respect to the input file molecular formula.
+
 If we have a Nytrogen atom, with a valence of **3**, we have to indicate in our program about Nytrogen first with its respective atom integers in the file and then proceed with the above steps.
+
+
+## Query 2:
+After getting all the results right for formulas that not only involve Carbon and Oxygen but also Nitrogen I came across an interesting situation.
+
+The input files **Aspirin.mol** and **Test01.mol** only involve the bond connections from Carbon and Oxygen with Hydrogen simultaneously. But, in the input file **Test02.mol** we have Nitrogen also.
+
+So, if I want to **printf** the result formula normally without any if else statements then, input files **Aspirin.mol** and **Test01.mol** will also give a zero Nitrogen in the formula which I don't need.
+
+To solve this issue I had to implement if else statements around the printf commands for Carbon, Oxygen and Nitrogen so that if the program has not found any of the chemical element it should omit it's symbol also.
+
+
+
+## (5) Conclusion:
+I was able to read the input files in the Mol format which helped me to visualiize the bond structure mathematically in the output window.
+
+The program operates perfectly well on the Mol files holding chemical elements like Carbon, Nitrogen and Oxygen.
+
+The program rightly finds the Hydrogen atoms from the chemical structure present in the Aspirin.mol file.
+
+The program also gives accurate results on the test files, giving chemical formulas from Test01.mol as well as Test02.mol input files.
+
+
+
+## (6) Future Improvements:
+This program is flexible and holds the possibilty of adding different other cheemical elements.
