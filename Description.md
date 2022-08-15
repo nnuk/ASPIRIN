@@ -91,6 +91,7 @@ In the end the file is closed and the character counts are returned to the main(
 Which in this case are (1, 2, 3, 4, 5, 6, 7, 11, 12) after reading the input file and looking at the atom block of the mol file. Secondly, count the bond for each integer in the bond block of connection tab and store the value.
 Do the same for Oxygen. This way will get the Hydrogen atoms.
 
+
 **Updated Step 2**
 To solve the problem of counting the total number of Hydrogen atoms I created a stack that stores the integers associated with Carbon and Oxygen respectively.
 
@@ -106,7 +107,36 @@ In this scenario, I have got the total number of Hydrogen atoms left (if any) fr
 
 After calculating each Hydrogen atom I have stored it in an array which I have summed up in the end to get the total number of Hydrogen atomns, printed along with Carbon and Oxygen as Output.
 
-**Step 3:** 
+
+**New Update for Step 2:**
+The approach in finding the Hydrogen atoms involves multiple concepts in terms of reaching to the desired output.
+
+First of all I have introduced the **cnt** integer that skips the rows containing not useful information at the start.
+
+As, the actual information about the number of atoms and bonds lies at the **4th** row where we have, in case of **Aspirin.mol**,  **13 13** that means 13 atoms and 13 bonds. So, I started my **cnt** variable to have the bond information from the 4th row.
+
+Then, storing the total number of bonds in a variable declared as **bond_size**.
+
+**bond_size** is used in the program ahead for counting the bonds in the bond block of Mol File.
+
+The counting process depends upon the array declared, in this case, **arr[20][3]** as well as the stack capacity of Carbon And Oxygen which is also set at **20**.
+
+The program first looks into the integers associated with Carbon (stored in the form of string in **str_c**) row wise, following Last In First Out (LIFO) approach.
+
+So, for example, if our **last in** is **11** in case of Aspirin.mol file and this number is associated with Carbon, then, the program looks into all the rows of bond block for the first **2** columns for the number 11.
+
+Then, the program takes the bond value (single or double) in the **3rd** column for every connection involving 11 and adds them to the **c_joined** integer.
+
+The above process is repeated for every integer associated with carbon and the result is added to the **c_joined** integer.
+
+The same steps are repeated for the integers associated with Oxygen (stored in the form of string in **str_o**) and later added to the integer **o_joined**.
+
+In the end, by applying the formula that is **((Total number of atoms (carbon or Oxygen)) * (maximum bond connections (carbon or oxygen))) - calculated bond connections (c_joined or o_joined)** we get the number of Hydrogen atoms.
+
+The above formula is to be applied on both carbon and oxygen seperately and then add the results into an integer denoting total number of Hydrogen atoms.
+
+With **printf** command, the output window shows us the Chemical Formula.
+
 
 ## Query:
 After thinking about the steps above I come to a early conclusion that this program must be modulated with respect to the input file molecular formula.
