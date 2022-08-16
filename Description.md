@@ -8,7 +8,8 @@ This file contains the step by step process from setting up the software to the 
 3) **Reading from MolFile**
 4) **Extracting molecular formula from MolFile**
 5) **Conclusion**
-6) **Future Improvements**
+6) **Unit Testing**
+7) **Future Improvements**
 
 
 ## (1) Prerequisite:
@@ -182,6 +183,20 @@ The program rightly finds the Hydrogen atoms from the chemical structure present
 The program also gives accurate results on the test files, giving chemical formulas from Test01.mol as well as Test02.mol input files.
 
 
+## (6) Unit Testing:
+I created a small **test** function in C for unit testing my C program.
 
-## (6) Future Improvements:
-This program is flexible and holds the possibilty of adding different other cheemical elements.
+The unit test is a seperate file with c code saved in the file named **Unit_Test.c**.
+
+The test basically checks on the **string_count** function. (for detail code check **Program.h**)
+
+With the help of **access** function I can verify if the program has the ability to access the File.
+
+In this unit test I made use of the **R_OK** flag, which is used to check for read permission bit.
+
+The test is **passed** as the R_OK flag verify the access for read permission for the input file.
+
+
+
+## (7) Future Improvements:
+This program is flexible and holds the possibilty of adding different other chemical elements.
