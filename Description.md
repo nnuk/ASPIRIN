@@ -159,7 +159,7 @@ The results of Carbon, Oxygen and Nitrogen are added to a new integer Hydrogen, 
 ## Query 1:
 After thinking about the steps above I come to a early conclusion that this program must be modulated with respect to the input file molecular formula.
 
-If we have a Nytrogen atom, with a valence of **3**, we have to indicate in our program about Nytrogen first with its respective atom integers in the file and then proceed with the above steps.
+If we have a Nitrogen atom, with a valence of **3**, we have to indicate in our program about Nytrogen first with its respective atom integers in the file and then proceed with the above steps.
 
 
 ## Query 2:
